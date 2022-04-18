@@ -16,11 +16,14 @@ public class Player : MonoBehaviour
     public float toMaxX = 90;
     float mouseX;
     float mouseY;
+    public GameObject player;
+    public Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        animator = player.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -30,6 +33,7 @@ public class Player : MonoBehaviour
         movement.z = Input.GetAxis("Vertical");
 
         transform.Translate(movement.x * speed, 0, movement.z * speed);
+        animator.SetFloat("walkSpeed", 10);
 
     }
     private void FixedUpdate()
