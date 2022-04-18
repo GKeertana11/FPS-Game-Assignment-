@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
         movement.z = Input.GetAxis("Vertical");
 
         transform.Translate(movement.x * speed, 0, movement.z * speed);
-        animator.SetFloat("walkSpeed", 10);
+       // animator.SetFloat("walkSpeed", 10);
 
     }
     private void FixedUpdate()
