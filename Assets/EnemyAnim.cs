@@ -53,7 +53,8 @@ public class EnemyAnim : MonoBehaviour
 
     public void Attack()
     {
-        anim.SetBool("Attack", true);
+       // anim.SetBool("Move", false);
+        anim.SetBool("attack", true);
     }
 
     public void Damage()
