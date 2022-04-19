@@ -20,18 +20,34 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 
-        if(Input.GetKey(KeyCode.F))
-            {
-            anim.SetTrigger("Fire");
-            anim.SetBool("Reload", false);
-            Instantiate(bullet, bulletPoint.transform.position, Quaternion.identity);
-        }
-        if(Input.GetKey(KeyCode.R))
+        if (Input.GetKey(KeyCode.F))
         {
-           
-          //  anim.SetBool("Fire", false);
-          
-           anim.SetBool("Reload", true);
+            anim.SetBool("Fire", true);
+            anim.SetBool("Reload", false);
+            WhenPlayerHitEnemy();
+
+        }
+        if (Input.GetKey(KeyCode.R))
+        {
+
+            anim.SetBool("Fire", false);
+
+            anim.SetBool("Reload", true);
+        }
+    }
+    private void WhenPlayerHitEnemy()
+    {
+        RaycastHit hitInformation;
+        if (Physics.Raycast(bulletPoint.position, bulletPoint.forward, out hitInformation, 100f))
+        {
+            Instantiate(bullet, bulletPoint.transform.position, Quaternion.identity);
+            GameObject hitEnenimes = hitInformation.collider.gameObject;
+            if (hitEnenimes.tag == "Enemy")
+            {
+                Debug.Log("Dead");
+                hitEnenimes.GetComponent<EnemyAnim>().Damage();
+
+            }
         }
     }
 }

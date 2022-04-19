@@ -59,10 +59,11 @@ public class EnemyAnim : MonoBehaviour
 
     public void Damage()
     {
-       
+        anim.SetBool("Damage", true);
     }
     public void Win()
     {
 
     }
+
 }
