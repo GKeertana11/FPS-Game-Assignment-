@@ -6,6 +6,10 @@ public class PlayerController : MonoBehaviour
 {
     public GameObject player;
     Animator anim;
+    public GameObject bullet;
+
+    public Transform bulletPoint;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,13 +22,16 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetKey(KeyCode.F))
             {
-            anim.SetBool("Fire", true);
+            anim.SetTrigger("Fire");
             anim.SetBool("Reload", false);
-           }
+            Instantiate(bullet, bulletPoint.transform.position, Quaternion.identity);
+        }
         if(Input.GetKey(KeyCode.R))
         {
-            anim.SetBool("Fire", false);
-            anim.SetBool("Reload", true);
+           
+          //  anim.SetBool("Fire", false);
+          
+           anim.SetBool("Reload", true);
         }
     }
 }
