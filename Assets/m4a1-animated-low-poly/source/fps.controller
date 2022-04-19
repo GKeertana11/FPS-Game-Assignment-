@@ -66,7 +66,7 @@ AnimatorController:
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
   - m_Name: Fire
-    m_Type: 4
+    m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
@@ -123,7 +123,7 @@ AnimatorStateMachine:
     m_Position: {x: 750, y: 600, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6958307534805341259}
-    m_Position: {x: 441.61633, y: 634.0283, z: 0}
+    m_Position: {x: 440, y: 630, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5108032858807828898}
     m_Position: {x: 720, y: 790, z: 0}
@@ -171,7 +171,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: broke's css_001|CubeAction
+  m_Name: idle
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:

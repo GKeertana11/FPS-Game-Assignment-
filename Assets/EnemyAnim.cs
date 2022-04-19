@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyAnim : MonoBehaviour
 {
     Animator anim;
+   // public GameObject player;
     public Transform target;
+    NavMeshAgent agent;
     public enum STATE
     {
         MOVE,
@@ -18,6 +21,8 @@ public class EnemyAnim : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
+        agent = GetComponent<NavMeshAgent>();
+        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
     // Update is called once per frame
@@ -43,18 +48,20 @@ public class EnemyAnim : MonoBehaviour
 
     public void Move()
     {
-        anim.SetBool("Move", true);
+        anim.SetBool("Run", true);
+        
 
         if(Vector3.Distance(target.position,this.transform.position)<15f)
         {
             state = STATE.ATTACK;
         }
+        
     }
 
     public void Attack()
     {
-       // anim.SetBool("Move", false);
-        anim.SetBool("attack", true);
+       anim.SetBool("Run", false);
+        anim.SetBool("Attack", true);
     }
 
     public void Damage()
