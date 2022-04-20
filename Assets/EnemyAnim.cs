@@ -51,10 +51,11 @@ public class EnemyAnim : MonoBehaviour
 
     public void Move()
     {
-        anim.SetBool("Run", true);
-        
+        // anim.SetBool("Run", true);
+        anim.SetBool("Attack", false);
+        agent.stoppingDistance = 10f;
 
-        if(Vector3.Distance(target.position,this.transform.position)<15f)
+        if (Vector3.Distance(target.position,this.transform.position)<=10f)
         {
             state = STATE.ATTACK;
         }
@@ -63,9 +64,13 @@ public class EnemyAnim : MonoBehaviour
 
     public void Attack()
     {
-       anim.SetBool("Run", false);
+      // anim.SetBool("Run", false);
         anim.SetBool("Attack", true);
-        DecreaseHealth(health);
+        if (Vector3.Distance(target.position, this.transform.position) >= 10f)
+        {
+            state = STATE.MOVE;
+        }
+            DecreaseHealth(health);
         Debug.Log("Attack");
     }
 
