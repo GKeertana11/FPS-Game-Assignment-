@@ -9,6 +9,8 @@ public class EnemyAnim : MonoBehaviour
    // public GameObject player;
     public Transform target;
     NavMeshAgent agent;
+   public  int health;
+   public int maxhealth=10;
     public enum STATE
     {
         MOVE,
@@ -20,6 +22,7 @@ public class EnemyAnim : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        health = maxhealth;
         anim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
@@ -62,6 +65,8 @@ public class EnemyAnim : MonoBehaviour
     {
        anim.SetBool("Run", false);
         anim.SetBool("Attack", true);
+        DecreaseHealth(health);
+        Debug.Log("Attack");
     }
 
     public void Damage()
@@ -71,6 +76,16 @@ public class EnemyAnim : MonoBehaviour
     public void Win()
     {
 
+    }
+
+    public void DecreaseHealth(int health)
+    {
+        health--;
+        Debug.Log(health);
+        if(health<=0)
+        {
+            Debug.Log("Gameover");  
+        }
     }
 
 }
