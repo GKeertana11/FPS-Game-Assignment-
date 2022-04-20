@@ -62,13 +62,21 @@ public class PlayerController : MonoBehaviour
             Audio.Play();
         }
 
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetKey(KeyCode.RightAlt))
         {
             // int i = 0;
 
             Debug.Log("weapon switched");
             weapons[0].SetActive(false);
             weapons[1].SetActive(true);
+        }
+        if (Input.GetKey(KeyCode.LeftAlt))
+        {
+            // int i = 0;
+
+            Debug.Log("weapon switched");
+            weapons[0].SetActive(true);
+            weapons[1].SetActive(false);
         }
     }
     /*  private void WhenPlayerHitEnemy()

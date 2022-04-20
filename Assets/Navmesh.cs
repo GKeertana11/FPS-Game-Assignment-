@@ -22,6 +22,6 @@ public class Navmesh : MonoBehaviour
     void Update()
     {
         agent.SetDestination(player.transform.position);
-        agent.stoppingDistance = 10f;
+        agent.stoppingDistance = 20f;
     }
 }
