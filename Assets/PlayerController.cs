@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     public GameObject player;
     Animator anim;
     public GameObject bullet;
-    AudioSource Audio;
+
     int maxHealth = 100;
     int health = 10;
     public GameObject[] weapons;
@@ -16,13 +16,16 @@ public class PlayerController : MonoBehaviour
 
     public Transform bulletPoint;
     public Camera cam;
+    AudioSource audioSource;
+    public List<AudioClip> audioClips;
+ 
 
     // Start is called before the first frame update
     void Start()
     {
         anim = player.GetComponent<Animator>();
         cam = GetComponentInChildren<Camera>();
-        Audio = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
 
     }
 
@@ -35,6 +38,7 @@ public class PlayerController : MonoBehaviour
         {
             anim.SetBool("Fire", true);
             anim.SetBool("Reload", false);
+            audioSource.PlayOneShot(audioClips[0]);
             ammo--;
             Debug.Log("Ammo:"+ammo);
             RaycastHit Hitinfo;
@@ -59,7 +63,8 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("Fire", false);
 
             anim.SetBool("Reload", true);
-            Audio.Play();
+           // Audio.Play();
+             audioSource.PlayOneShot(audioClips[1]);
         }
 
         if (Input.GetKey(KeyCode.RightAlt))
