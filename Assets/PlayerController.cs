@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public Camera cam;
     AudioSource audioSource;
     public List<AudioClip> audioClips;
+  
  
 
     // Start is called before the first frame update
@@ -26,6 +27,7 @@ public class PlayerController : MonoBehaviour
         anim = player.GetComponent<Animator>();
         cam = GetComponentInChildren<Camera>();
         audioSource = GetComponent<AudioSource>();
+       
 
     }
 
@@ -51,6 +53,8 @@ public class PlayerController : MonoBehaviour
                 if (Hitinfo.transform.tag == "Enemy")
                 {
                     Destroy(Hitinfo.transform.gameObject);
+               
+                    
                 }
 
 
@@ -122,6 +126,12 @@ public class PlayerController : MonoBehaviour
             
             ammo = Mathf.Clamp(ammo + 25, 0, maxAmmo);
             Debug.Log("Collected ammo");
+        }
+
+        if(collision.gameObject.tag=="Med")
+        {
+            Destroy(collision.gameObject);
+            EnemyAnim.instance.IncreaseHealth();
         }
     }
 

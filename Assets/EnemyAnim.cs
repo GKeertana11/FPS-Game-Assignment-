@@ -5,12 +5,13 @@ using UnityEngine.AI;
 
 public class EnemyAnim : MonoBehaviour
 {
+    public static EnemyAnim instance;
     Animator anim;
-   // public GameObject player;
+    // public GameObject player;
     public Transform target;
     NavMeshAgent agent;
-   public  int health;
-   public int maxhealth=10;
+    public int health;
+    public int maxhealth = 100;
     public enum STATE
     {
         MOVE,
@@ -20,6 +21,14 @@ public class EnemyAnim : MonoBehaviour
     }
     public STATE state = STATE.MOVE;
     // Start is called before the first frame update
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        return;
+    }
     void Start()
     {
         health = maxhealth;
@@ -53,24 +62,29 @@ public class EnemyAnim : MonoBehaviour
     {
         // anim.SetBool("Run", true);
         anim.SetBool("Attack", false);
-        agent.stoppingDistance = 20f;
+        agent.stoppingDistance = 10f;
 
-        if (Vector3.Distance(target.position,this.transform.position)<=20f)
+        if (Vector3.Distance(target.position, this.transform.position) <= 20f)
         {
             state = STATE.ATTACK;
         }
-        
+
     }
 
     public void Attack()
     {
-      // anim.SetBool("Run", false);
+        // anim.SetBool("Run", false);
         anim.SetBool("Attack", true);
-        if (Vector3.Distance(target.position, this.transform.position) >= 20f)
+        if (Vector3.Distance(target.position, this.transform.position) >= 10f)
         {
             state = STATE.MOVE;
         }
-            DecreaseHealth(health);
+        
+      
+
+            DecreaseHealth();
+            
+        
         Debug.Log("Attack");
     }
 
@@ -83,14 +97,24 @@ public class EnemyAnim : MonoBehaviour
 
     }
 
-    public void DecreaseHealth(int health)
+    public void DecreaseHealth()
     {
         health--;
         Debug.Log(health);
-        if(health<=0)
+        if (health <= 0)
         {
-            Debug.Log("Gameover");  
+            Debug.Log("Gameover");
         }
     }
+    public void IncreaseHealth()
+    {
 
+
+        if (health < maxhealth)
+        {
+            health++;
+            Debug.Log("IncreasedHealth:" + health);
+        }
+
+    }
 }
